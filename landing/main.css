@@ -1,0 +1,242 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+body {
+  background-color: #e6e6e6;
+}
+
+.development {
+  font-family: 'Open Sans';
+  color: white;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.copyright {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  color: white;
+}
+
+.modal {
+  overflow-y: auto;
+}
+
+.modal-link-text {
+  padding-left: 0;
+}
+
+.error-border {
+  outline: 0;
+  border-color: #f0506e;
+}
+
+#alert-prompt {
+  z-index: 10000000;
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 20%;
+}
+
+#footer {
+  bottom: 15px;
+}
+
+.bg-personal {
+  background-color: #0277BD;
+  z-index: 10;
+}
+
+.col-auto {
+  padding: 20px;
+}
+
+.row {
+  left: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled, .navbar-dark .navbar-nav .nav-link.disabled:hover {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#pastebin-code {
+  color: #ffffff;
+  resize: none;
+  white-space: nowrap;
+  position: fixed;
+  width: 100%;
+  top: 56.4px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  border-color: #002a41;
+  background-color: #002a41;
+}
+
+#pastebin-code-view {
+  position: fixed;
+  width: 100%;
+  top: 56.4px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 0;
+}
+
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+  list-style-type: decimal !important;
+}
+
+pre.prettyprint {
+  white-space: pre;
+  overflow: auto;
+  background-color: #002a41;
+  border-radius: 0px;
+  margin: 0px;
+}
+
+.linenums {
+  padding-left: 30px;
+}
+
+.white-link {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.white-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#alert-pastebin-menu {
+  top: 65px;
+  right: 10px;
+  position: fixed;
+  z-index: 5;
+  background-color: #1c4a63;
+  padding: 10px;
+  padding-bottom: 7px;
+}
+
+#pastebin-code-view::-webkit-scrollbar, #pastebin-code::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+#pastebin-code-view::-webkit-scrollbar-track, #pastebin-code::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#pastebin-code-view::-webkit-scrollbar-thumb, #pastebin-code::-webkit-scrollbar-thumb {
+  background-color: #466d82;
+  outline: 1px solid #466d82;
+}
+
+#pastebin-code-view::-webkit-scrollbar-corner, #pastebin-code::-webkit-scrollbar-corner {
+  background-color: #466d82;
+  outline: 1px solid #466d82;
+}
+
+.grid-card {
+  height: 100%;
+}
+
+.card-center {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+}
+
+#settings-container {
+  display: inline-block;
+}
+
+#privacy-card {
+  margin: 20px;
+}
+
+.material-icons.md-48 { font-size: 48px; }
+
+/* ---- reset ---- */
+
+body {
+  margin: 0;
+  font: normal 75% sans-serif;
+}
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+/* ---- particles.js container ---- */
+
+#background-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #242424;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+/* ---- stats.js ---- */
+
+.count-particles {
+  background: #000022;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 80px;
+  color: #13E8E9;
+  font-size: .8em;
+  text-align: left;
+  text-indent: 4px;
+  line-height: 14px;
+  padding-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.js-count-particles {
+  font-size: 1.1em;
+}
+
+#stats, .count-particles {
+  -webkit-user-select: none;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#stats {
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.count-particles {
+  border-radius: 0 0 3px 3px;
+}

@@ -1,0 +1,41 @@
+<div ng-include="'/project/shared/projectNavbar.html'"></div>
+
+<div class="alert text-center" role="alert" id="alert-pastebin-menu">
+  <a class="white-link" href="" ng-click="NewPaste()"><i class="material-icons">insert_drive_file</i></a><br />
+  <a class="white-link" href="" ng-click="ShowPasteHistory()"><i class="material-icons">history</i></a></div>
+
+<pre class="prettyprint linenums" data-ng-init="formatCode()" ng-bind="pastebinData.code" id="pastebin-code-view"></pre>
+
+<div class="modal fade" id="pasteHistoryModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Paste History</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Timestamp</th>
+              <th scope="col">View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="paste in pastebinData.history">
+              <th scope="row">{{paste.charID}}</th>
+              <td>{{paste.creationTime}}</td>
+              <td><a href="" role="button" ng-click="ViewHistoricalPaste(paste.charID)" class="btn btn-primary btn-sm">Open</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

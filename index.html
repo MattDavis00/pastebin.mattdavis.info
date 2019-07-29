@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118787381-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-118787381-1');
+	</script>
+
+	<title>Matt Davis</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+	<script src="project/app.js"></script>
+
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,600" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+	<!-- Google Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Particles -->
+	<script src="landing/particles.min.js"></script>
+
+	<!-- HighlightJS -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+	<!-- Style -->
+	<link rel="stylesheet" href="/landing/main.css" />
+
+
+</head>
+
+<body ng-app="project-app">
+
+	<div ng-view>
+
+	</div>
+
+	<div class="collapse" id="alert-prompt">
+		<div class="alert text-center" role="alert" ng-model="alertPrompt" id="alert-prompt-data">
+		</div>
+	</div>
+
+</body>
+
+<!-- Controllers -->
+<script src="project/components/landing/landingController.js"></script>
+<script src="project/components/dashboard/dashboardController.js"></script>
+<script src="project/components/pastebin/share/pastebinController.js"></script>
+<script src="project/components/pastebin/view/viewPasteController.js"></script>
+<script src="project/components/broken-link/brokenLinkController.js"></script>
+
+</html>
