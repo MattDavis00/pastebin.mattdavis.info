@@ -24,8 +24,10 @@ angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "s
     request.then(function(response) {
       var serverResponse = angular.fromJson(response.data);
 
-      if (serverResponse.executionErrorFlag) { // Server could not insert
+      if (serverResponse.executionErrorFlag) { // Server could fetch paste
         sharedFunctions.Prompt("error", serverResponse.executionError);
+        if (serverResponse.executionError === "Sharing link is invalid. ")
+          window.location.href = '#!/broken-link';
       } else if (serverResponse.fetchSuccess) {
         $scope.pastebinData.code = serverResponse.data.code;
         setTimeout(function() {

@@ -55,9 +55,8 @@ angular.module("project-app").controller("landingCtrl", ["$scope", "$http", "sha
         sessionStorage.loggedIn = serverResponse.data.loggedIn;
 
         sharedFunctions.Prompt("success", "Login successful!");
-        $('#loginModal').on('hidden.bs.modal', function(e) {
-          window.location.href = '#!dashboard';
-        })
+        window.location.href = '#!pastebin';
+
       } else {
         sharedFunctions.Prompt("warning", "Unexpected response.");
       }
@@ -151,17 +150,6 @@ angular.module("project-app").controller("landingCtrl", ["$scope", "$http", "sha
 
   particlesJS.load('background-animation', '/landing/particles.json');
 
-  $scope.Modal.SwitchLoginRegister = function() {
-    $('#loginModal').modal('toggle');
-    $('#registerModal').modal('toggle');
-  }
-
-  $('#loginModal').on('hidden.bs.modal', function(e) {
-    $scope.loginData = {};
-    sharedFunctions.Validation.RemoveErrorTooltip('#login-email');
-    sharedFunctions.Validation.RemoveErrorTooltip('#login-password');
-  })
-
   $('#registerModal').on('hidden.bs.modal', function(e) {
     $scope.registerData = {};
     sharedFunctions.Validation.RemoveErrorTooltip('#register-email');
@@ -170,11 +158,5 @@ angular.module("project-app").controller("landingCtrl", ["$scope", "$http", "sha
     sharedFunctions.Validation.RemoveErrorTooltip('#register-password');
     sharedFunctions.Validation.RemoveErrorTooltip('#register-passwordRepeat');
   })
-
-  $scope.ClearForms = function() {
-    $scope.loginData = {};
-    $scope.registerData = {};
-    sharedFunctions.Validation.RemoveErrorTooltip();
-  }
 
 }]);

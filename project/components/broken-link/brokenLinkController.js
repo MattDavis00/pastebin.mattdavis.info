@@ -10,7 +10,7 @@ angular.module("project-app").controller("brokenLinkCtrl", ["$scope", "$http", "
   $interval(function() {
     $scope.countdown--;
     if ($scope.countdown <= 0)
-      window.location.href = "#!dashboard";
+      window.location.href = "#!";
   }, 1000, 5);
 
 }]);

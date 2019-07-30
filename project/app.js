@@ -8,17 +8,17 @@ app.config(function($routeProvider) {
       templateUrl: "project/components/landing/landingView.html",
       controller: "landingCtrl"
     })
-    .when("/dashboard", {
-      templateUrl: "project/components/dashboard/dashboardView.html",
-      controller: "dashboardCtrl"
-    })
+    // .when("/dashboard", {
+    //   templateUrl: "project/components/dashboard/dashboardView.html",
+    //   controller: "dashboardCtrl"
+    // })
     .when("/settings", {
-      templateUrl: "project/components/dashboard/settingsView.html",
-      controller: "dashboardCtrl"
+      templateUrl: "project/components/settings/settingsView.html",
+      controller: "settingsCtrl"
     })
     .when("/privacy-policy", {
       templateUrl: "project/components/privacy/privacyPolicyView.html",
-      controller: "dashboardCtrl"
+      controller: "settingsCtrl"
     })
     .when("/broken-link", {
       templateUrl: "project/components/broken-link/brokenLinkView.html",

@@ -1,4 +1,4 @@
-angular.module("project-app").controller("dashboardCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "localVariables", function($scope, $http, sharedFunctions, $filter, localVariables) {
+angular.module("project-app").controller("settingsCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "localVariables", function($scope, $http, sharedFunctions, $filter, localVariables) {
 
   $scope.results = "";
 
@@ -10,7 +10,7 @@ angular.module("project-app").controller("dashboardCtrl", ["$scope", "$http", "s
 
     var request = $http({
       method: "post",
-      url: "project/components/dashboard/updateSettings.php",
+      url: "project/components/settings/updateSettings.php",
       data: {
         password: {
           data: $scope.settingsData.password,
