@@ -9,3 +9,6 @@ Paste your code/text and click save/share. A unique URL is then generated for yo
 When viewing your code it has syntax highlighting.
 
 Ability to view your paste history.
+
+### Collaborators:
+Matt Davis: contact@mattdavis.info
