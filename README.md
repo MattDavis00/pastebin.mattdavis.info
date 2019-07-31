@@ -1,5 +1,7 @@
 # A Pastebin Alternative/Adaptation
 
+### Hosted at: https://pastebin.mattdavis.info/
+
 Functions similar https://pastebin.com/
 
 Paste your code/text and click save/share. A unique URL is then generated for your paste.
