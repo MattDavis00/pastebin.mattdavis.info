@@ -1,4 +1,4 @@
-angular.module("project-app").controller("settingsCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "localVariables", function($scope, $http, sharedFunctions, $filter, localVariables) {
+angular.module("project-app").controller("settingsCtrl", ["$scope", "$http", "sharedFunctions", "$filter", function($scope, $http, sharedFunctions, $filter) {
 
   $scope.results = "";
 

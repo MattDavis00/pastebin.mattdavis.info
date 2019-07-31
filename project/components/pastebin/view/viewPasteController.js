@@ -1,4 +1,4 @@
-angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "localVariables", "$location", function($scope, $http, sharedFunctions, $filter, localVariables, $location) {
+angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "$location", function($scope, $http, sharedFunctions, $filter, $location) {
 
   $scope.Modal = {};
   $scope.pastebinData = {};

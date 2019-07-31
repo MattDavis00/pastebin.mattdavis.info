@@ -1,17 +1,15 @@
 app = angular.module("project-app", ["ngRoute"]);
 
+
+///////////////////////// Route Provider /////////////////////////
 app.config(function($routeProvider) {
   $routeProvider
 
-    ///////////////////////// General ////////////////////////////
+    // Routes 
     .when("/", {
       templateUrl: "project/components/landing/landingView.html",
       controller: "landingCtrl"
     })
-    // .when("/dashboard", {
-    //   templateUrl: "project/components/dashboard/dashboardView.html",
-    //   controller: "dashboardCtrl"
-    // })
     .when("/settings", {
       templateUrl: "project/components/settings/settingsView.html",
       controller: "settingsCtrl"
@@ -34,23 +32,32 @@ app.config(function($routeProvider) {
     })
 
 
-    ///////////////////////// Otherwise, Redirect To Login ////////////////////////////
+    // Otherwise show the broken link page, and then redirect to the landing page.
     .otherwise({
       redirectTo: "/broken-link"
     });
 
 });
 
+
+/////////////////////// Shared Client-Side Functions /////////////////////////////
 app.service('sharedFunctions', ['$http', "$location", function($http, $location) {
 
   $('#alert-prompt').collapse({
     toggle: false
   })
 
+  /**
+   * Handles alert prompts that appear at the bottom of the screen.
+   *
+   * @param {string} type The desired type of prompt. This affects the colour of the alert. Includes "success" (green), "error" (red), "warning" (yellow), "info" (blue) and defaults to blue.
+   * @param {string} value The string to be displayed in the alert box. E.g "Wrong password!".
+   */
   this.Prompt = function(type, value) {
 
     var alertClass = "";
 
+    // Check alert type/colour and convert it to its appropriate bootstrap class name.
     if (type === "success") {
       alertClass = "alert-success";
     } else if (type === "error") {
@@ -63,10 +70,12 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
       alertClass = "alert-primary";
     }
 
+    // Add the class and text to the alert prompt, then show it.
     $("#alert-prompt-data").addClass(alertClass);
     $("#alert-prompt-data").text(value);
     $('#alert-prompt').collapse('show');
 
+    // After 5 seconds hide the prompt, remove the text and class as well.
     setTimeout(function() {
       $('#alert-prompt').collapse('hide');
       $("#alert-prompt-data").text("");
@@ -75,27 +84,26 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Check if user is logged in, if not show error and redirect.
   this.AuthenticateUser = function() {
 
     if (sessionStorage.loggedIn !== "true") {
-      $("#alert-prompt-data").addClass("alert-danger");
-      $("#alert-prompt-data").text("You are not logged in! Returning to landing page in 5 seconds...");
-      $('#alert-prompt').collapse('show');
 
+      // Show not logged in error
+      self.Prompt("error", "You are not logged in! Returning to landing page in 5 seconds...");
+
+      // After 5 seconds, redirect
       setTimeout(function() {
-        $('#alert-prompt').collapse('hide');
-        $("#alert-prompt-data").text("");
-        $("#alert-prompt-data").removeClass("alert-danger");
         window.location.href = '#!';
       }, 5000);
     }
 
   }
 
+  // Send logout request to the server. If successful, show a success message and redirect to the index.
   this.LogOut = function() {
 
-    //////////////Log Out Request//////////////
-
+    // Log Out Request
     var request = $http({
       method: "post",
       url: "project/shared/logOut.php",
@@ -105,10 +113,11 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
       }
     });
 
+    // Response
     request.then(function(response) {
       var serverResponse = angular.fromJson(response.data);
 
-      if (serverResponse.logOutSuccess) {
+      if (serverResponse.logOutSuccess) { // Logout was successful
 
         // Set Local Session Variables //
         sessionStorage.userID = serverResponse.data.userID;
@@ -120,7 +129,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
         self.Prompt("success", "Log out successful!");
         window.location.href = '#!';
 
-      } else {
+      } else { // Logout failed
         self.Prompt("warning", "Log out unsuccessful!");
       }
 
@@ -128,8 +137,11 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
-  this.Validation = {};
+  this.Validation = {}; // Validation class
 
+  // Email validation function.
+  // Cannot be blank, cannot be over 100 chars, and must match the email regex.
+  // Returns true if errors were found.
   this.Validation.Email = function(element, email) {
     var returnData = {};
     returnData.errorFlag = false;
@@ -157,7 +169,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
       }
     }
 
-    if (returnData.errorFlag) {
+    if (returnData.errorFlag) { // If an error occured, display an error message to the user.
       self.Validation.ErrorTooltip(element, returnData.errors);
     }
 
@@ -165,6 +177,9 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Name validation.
+  // Cannot be blank, must be 50 chars or less.
+  // Returns true if errors were found.
   this.Validation.Name = function(element, name) {
     var returnData = {};
     returnData.errorFlag = false;
@@ -187,7 +202,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
       }
     }
 
-    if (returnData.errorFlag) {
+    if (returnData.errorFlag) { // If an error occured, display an error message to the user.
       self.Validation.ErrorTooltip(element, returnData.errors);
     }
 
@@ -195,6 +210,9 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Password validation.
+  // Must be 8 or more characters, the password and repeat must match.
+  // Returns true if errors were found.
   this.Validation.Password = function(element, element2, password, passwordRepeat) {
     var returnData = {};
     returnData.errorFlag = false;
@@ -218,7 +236,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
       }
     }
 
-    if (returnData.errorFlag) {
+    if (returnData.errorFlag) { // If an error occured, display an error message to the user.
       self.Validation.ErrorTooltip(element, returnData.errors);
       $(element2).addClass("error-border");
     }
@@ -227,6 +245,9 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Emptiness validation.
+  // Must exist and must be greater than 0 in length (this includes integers as their length can be implicitly calculated as a string).
+  // Returns true if errors were found.
   this.Validation.Empty = function(element, value) {
     var returnData = {};
     returnData.errorFlag = false;
@@ -252,6 +273,9 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Create a form validation tooltip.
+  // Take in the html element ID and the errors.
+  // Outlines the field in red whilst displaying a bootstrap tooltip beside it.
   this.Validation.ErrorTooltip = function(element, errors) {
     $(element).removeClass("error-border");
     $(element).tooltip('dispose');
@@ -263,52 +287,12 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
     $(element).addClass("error-border");
   }
 
+  // Removes any validation tooltip from an element and its red outline.
   this.Validation.RemoveErrorTooltip = function(element) {
     $(element).removeClass("error-border");
     $(element).tooltip('dispose');
   }
 
-  this.NavbarInit = function() {
-
-    var view = location.hash;
-    var pasteView = $location.path().substring(0, 3);
-
-    $("#personal-pastebin-nav").removeClass("active");
-    $("#task-manager-nav").removeClass("active");
-
-    // Pastebin
-    if (view === "#!/pastebin" || pasteView === "/p/") {
-      $("#personal-pastebin-nav").addClass("active");
-    }
-    // Task Manager
-    else if (view === "#!/task-manager") {
-      $("#task-manager-nav").addClass("active");
-    }
-    // Settings
-    else if (view === "#!/settings") {
-      $("#settings-nav").addClass("active");
-    }
-
-
-  }
-
   var self = this;
 
 }]);
-
-
-///// Local Variables /////
-
-app.service('localVariables', function() {
-
-  var storage = {};
-
-  return {
-    get_storage: function() {
-      return storage;
-    },
-    set_storage: function(value) {
-      userID = value;
-    }
-  };
-});

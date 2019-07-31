@@ -1,4 +1,4 @@
-angular.module("project-app").controller("brokenLinkCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "localVariables", "$interval", function($scope, $http, sharedFunctions, $filter, localVariables, $interval) {
+angular.module("project-app").controller("brokenLinkCtrl", ["$scope", "$http", "sharedFunctions", "$filter", "$interval", function($scope, $http, sharedFunctions, $filter, $interval) {
 
   $scope.results = "";
 
@@ -10,7 +10,7 @@ angular.module("project-app").controller("brokenLinkCtrl", ["$scope", "$http", "
   $interval(function() {
     $scope.countdown--;
     if ($scope.countdown <= 0)
-      window.location.href = "#!";
+      window.location.href = "#!pastebin";
   }, 1000, 5);
 
 }]);
