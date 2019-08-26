@@ -11,4 +11,4 @@ When viewing your code it has syntax highlighting.
 Ability to view your paste history.
 
 ### Collaborators:
-Matt Davis: contact@mattdavis.info
+Matt Davis: contact@mattdavis.info https://mattdavis.info/
