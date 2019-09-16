@@ -1,12 +1,12 @@
 <div ng-include="'/project/shared/projectNavbar.html'"></div>
 
 <div class="alert text-center" role="alert" id="alert-pastebin-menu">
-  <a class="white-link" href="" ng-click="NewPaste()"><i class="material-icons">insert_drive_file</i></a><br />
-  <a class="white-link" href="" ng-click="SharePaste()"><i class="material-icons">share</i></a><br />
-  <a class="white-link" href="" ng-click="ShowPasteHistory()"><i class="material-icons">history</i></a>
+  <a class="white-link" href="" ng-click="NewPaste()"><i class="material-icons-sharp">note_add</i></a><br />
+  <a class="white-link" href="" ng-click="SharePaste()"><i class="material-icons-sharp">save</i></a><br />
+  <a class="white-link" href="" ng-click="ShowPasteHistory()"><i class="material-icons-sharp">history</i></a>
 </div>
 
-<textarea ng-model="pastebinData.code" id="pastebin-code"></textarea>
+<textarea ng-model="pastebinData.code" id="pastebin-code" placeholder="Console.WriteLine('Paste your code here!');"></textarea>
 
 <div class="modal fade" id="pasteHistoryModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

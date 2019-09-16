@@ -78,7 +78,7 @@ body {
 }
 
 #pastebin-code {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   resize: none;
   white-space: nowrap;
   position: fixed;
@@ -90,6 +90,15 @@ body {
   z-index: 1;
   border-color: #002a41;
   background-color: #002a41;
+  padding: 16px;
+}
+
+#pastebin-code::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#pastebin-code:focus {
+  outline: none;
 }
 
 #pastebin-code-view {
