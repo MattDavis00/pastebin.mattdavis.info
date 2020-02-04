@@ -27,6 +27,7 @@ angular.module("project-app").controller("settingsCtrl", ["$scope", "$http", "sh
     });
 
     request.then(function(response) {
+      sharedFunctions.CheckForSSO(response);
       var serverResponse = angular.fromJson(response.data);
 
       var fields = ["#settings-password", "#settings-password-repeat"];

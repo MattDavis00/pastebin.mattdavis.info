@@ -137,6 +137,15 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
+  // Send logout request to the server. If successful, show a success message and redirect to the index.
+  this.CheckForSSO = function(data) {
+    angular.fromJson(data);
+    var serverResponse = angular.fromJson(response.data);
+    if (serverResponse.executionErrorFlag && serverResponse.executionError === "You are not logged in. ") {
+      window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + window.location.href + "&tokenURL=https://pastebin.mattdavis.info/project/shared/token.php";
+    }
+  }
+
   this.Validation = {}; // Validation class
 
   // Email validation function.

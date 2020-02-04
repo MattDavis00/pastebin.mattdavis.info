@@ -52,6 +52,7 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
       });
 
       request.then(function(response) {
+        sharedFunctions.CheckForSSO(response);
         var serverResponse = angular.fromJson(response.data);
 
         if (serverResponse.executionErrorFlag) { // Server could not insert
@@ -114,6 +115,7 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
     });
 
     request.then(function(response) {
+      sharedFunctions.CheckForSSO(response);
       var serverResponse = angular.fromJson(response.data);
 
       if (serverResponse.executionErrorFlag) { // Server could not insert
