@@ -89,6 +89,8 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
     if (sessionStorage.loggedIn !== "true") {
 
+      window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + window.location.href + "&tokenURL=https://pastebin.mattdavis.info/project/shared/token.php";
+
       // Show not logged in error
       self.Prompt("error", "You are not logged in! Returning to landing page in 5 seconds...");
 
@@ -138,8 +140,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
   }
 
   // Send logout request to the server. If successful, show a success message and redirect to the index.
-  this.CheckForSSO = function(data) {
-    angular.fromJson(data);
+  this.CheckForSSO = function(response) {
     var serverResponse = angular.fromJson(response.data);
     if (serverResponse.executionErrorFlag && serverResponse.executionError === "You are not logged in. ") {
       window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + window.location.href + "&tokenURL=https://pastebin.mattdavis.info/project/shared/token.php";
