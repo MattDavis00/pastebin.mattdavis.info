@@ -90,7 +90,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
     this.updateSession();
     if (sessionStorage.loggedIn !== "true") {
 
-      this.CheckForSSO();
+      this.SSORedirect();
 
       // Show not logged in error
       self.Prompt("error", "You are not logged in! Returning to landing page in 5 seconds...");
@@ -143,8 +143,12 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
   this.CheckForSSO = function(response) {
     var serverResponse = angular.fromJson(response.data);
     if (serverResponse.executionErrorFlag && serverResponse.executionError === "You are not logged in. ") {
-      window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + encodeURIComponent(window.location.href) + "&tokenURL=" + encodeURIComponent("https://pastebin.mattdavis.info/project/shared/token.php");
+      this.SSORedirect();
     }
+  }
+
+  this.SSORedirect = function() {
+    window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + encodeURIComponent(window.location.href) + "&tokenURL=" + encodeURIComponent("https://pastebin.mattdavis.info/project/shared/token.php");
   }
 
   this.updateSession = function() {
