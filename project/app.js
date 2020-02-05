@@ -87,9 +87,10 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
   // Check if user is logged in, if not show error and redirect.
   this.AuthenticateUser = function() {
 
+    this.updateSession();
     if (sessionStorage.loggedIn !== "true") {
 
-      window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + encodeURIComponent(window.location.href) + "&tokenURL=" + encodeURIComponent("https://pastebin.mattdavis.info/project/shared/token.php");
+      this.CheckForSSO();
 
       // Show not logged in error
       self.Prompt("error", "You are not logged in! Returning to landing page in 5 seconds...");
@@ -139,12 +140,36 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
   }
 
-  // Send logout request to the server. If successful, show a success message and redirect to the index.
   this.CheckForSSO = function(response) {
     var serverResponse = angular.fromJson(response.data);
     if (serverResponse.executionErrorFlag && serverResponse.executionError === "You are not logged in. ") {
       window.location.href = "https://auth.mattdavis.info/api/auth?redirectURL=" + encodeURIComponent(window.location.href) + "&tokenURL=" + encodeURIComponent("https://pastebin.mattdavis.info/project/shared/token.php");
     }
+  }
+
+  this.updateSession = function() {
+    // Log Out Request
+    var request = $http({
+      method: "post",
+      url: "project/shared/session.php",
+      data: {},
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
+
+    // Response
+    request.then(function(response) {
+      var serverResponse = angular.fromJson(response.data);
+
+      // Set Local Session Variables //
+      sessionStorage.userID = serverResponse.data.userID;
+      sessionStorage.email = serverResponse.data.email;
+      sessionStorage.firstName = serverResponse.data.firstName;
+      sessionStorage.lastName = serverResponse.data.lastName;
+      sessionStorage.loggedIn = serverResponse.data.loggedIn;
+
+    });
   }
 
   this.Validation = {}; // Validation class

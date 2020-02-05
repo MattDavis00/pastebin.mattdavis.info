@@ -55,6 +55,7 @@ angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "s
 
   $scope.ShowPasteHistory = function() {
 
+    sharedFunctions.updateSession();
     if (sessionStorage.loggedIn === "true") {
       $('#pasteHistoryModal').modal('show');
 
@@ -84,6 +85,7 @@ angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "s
 
       });
     } else {
+      sharedFunctions.CheckForSSO();
       sharedFunctions.Prompt("error", "You are not logged in. Please log in to view paste history. ");
     }
 
@@ -97,9 +99,11 @@ angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "s
   }
 
   $scope.NewPaste = function() {
+    sharedFunctions.updateSession();
     if (sessionStorage.loggedIn === "true") {
       window.location.href = '#!pastebin';
     } else {
+      sharedFunctions.CheckForSSO();
       sharedFunctions.Prompt("error", "You are not logged in. Please log in to create a new paste. ");
     }
   }

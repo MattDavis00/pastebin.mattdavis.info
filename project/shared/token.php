@@ -8,9 +8,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/project/shared/validations.php");
 
 $token = $_GET["token"];
 
-$json = file_get_contents("https://auth.mattdavis.info/api/check-token?token=" + token);
-
-echo($json);
+$json = file_get_contents("https://auth.mattdavis.info/api/check-token?token=" . $token);
 
 $data = json_decode($json);
 
@@ -34,25 +32,28 @@ try
 
     try
     {
-    // SQL Query
-    $updateUser = $conn->prepare("UPDATE `user` SET `Last_Login_Time` = :loginTime WHERE `User_ID` = :userID");
-    $updateUser->bindParam(':loginTime', $serverDateTime);
-    $updateUser->bindParam(':userID', $result[0]["User_ID"]);
+      // SQL Query
+      $updateUser = $conn->prepare("UPDATE `user` SET `Last_Login_Time` = :loginTime WHERE `User_ID` = :userID");
+      $updateUser->bindParam(':loginTime', $serverDateTime);
+      $updateUser->bindParam(':userID', $result[0]["User_ID"]);
 
-    // Execute Query
-    $updateUserReturn = $updateUser->execute();
+      // Execute Query
+      $updateUserReturn = $updateUser->execute();
 
-    // Close Statement
-    $updateUser = null;
+      // Close Statement
+      $updateUser = null;
 
-    $outputData->loginSuccess = true;
+      $outputData->loginSuccess = true;
 
-    $outputData->data->loggedIn = $_SESSION["loggedIn"] = true;
-    $outputData->data->userID = $_SESSION["userID"] = $result[0]["User_ID"];
-    $outputData->data->email = $_SESSION["email"] = $result[0]["Email"];
-    $outputData->data->firstName = $_SESSION["firstName"] = $result[0]["First_Name"];
-    $outputData->data->lastName = $_SESSION["lastName"] = $result[0]["Last_Name"];
-    $_SESSION["passwordHash"] = $result[0]["Password_Hash"];
+      $outputData->data->loggedIn = $_SESSION["loggedIn"] = true;
+      $outputData->data->userID = $_SESSION["userID"] = $result[0]["User_ID"];
+      $outputData->data->email = $_SESSION["email"] = $result[0]["Email"];
+      $outputData->data->firstName = $_SESSION["firstName"] = $result[0]["First_Name"];
+      $outputData->data->lastName = $_SESSION["lastName"] = $result[0]["Last_Name"];
+      $_SESSION["passwordHash"] = $result[0]["Password_Hash"];
+
+      echo ("<script> window.location.href='" . $data->redirectURL ."'; </script>");
+      die();
     }
     catch(Exception $e)
     {
@@ -70,3 +71,11 @@ catch(PDOException $e)
   $outputData->executionErrorFlag = true;
   $outputData->executionError = "Login failed. Please try again.";
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Output
+echo json_encode($outputData);
+
+// Close Connection
+$conn = null;
