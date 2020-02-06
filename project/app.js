@@ -10,14 +10,6 @@ app.config(function($routeProvider) {
       templateUrl: "project/components/pastebin/share/pastebinView.html",
       controller: "pastebinCtrl"
     })
-    .when("/settings", {
-      templateUrl: "project/components/settings/settingsView.html",
-      controller: "settingsCtrl"
-    })
-    .when("/privacy-policy", {
-      templateUrl: "project/components/privacy/privacyPolicyView.html",
-      controller: "settingsCtrl"
-    })
     .when("/broken-link", {
       templateUrl: "project/components/broken-link/brokenLinkView.html",
       controller: "brokenLinkCtrl"
@@ -126,7 +118,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
         sessionStorage.loggedIn = serverResponse.data.loggedIn;
 
         self.Prompt("success", "Log out successful!");
-        window.location.href = '#!';
+        window.location.href = 'https://auth.mattdavis.info/api/logout';
 
       } else { // Logout failed
         self.Prompt("warning", "Log out unsuccessful!");

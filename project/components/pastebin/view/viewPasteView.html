@@ -1,6 +1,6 @@
 <div ng-include="'/project/shared/projectNavbar.html'"></div>
 
-<div class="alert text-center" role="alert" id="alert-pastebin-menu">
+<div class="alert text-center" data-ng-init="sharedFunctions.AuthenticateUser()" role="alert" id="alert-pastebin-menu">
   <a class="white-link" href="" ng-click="NewPaste()"><i class="material-icons">insert_drive_file</i></a><br />
   <a class="white-link" href="" ng-click="ShowPasteHistory()"><i class="material-icons">history</i></a></div>
 

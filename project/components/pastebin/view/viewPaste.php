@@ -6,6 +6,9 @@ include($_SERVER["DOCUMENT_ROOT"]."/project/shared/connection.php");
 // Include Validation Functions
 include($_SERVER["DOCUMENT_ROOT"]."/project/shared/validations.php");
 
+// Ensure That The User Is Logged In
+include($_SERVER["DOCUMENT_ROOT"]."/project/shared/authenticate.php");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Input Variables
