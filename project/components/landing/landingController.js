@@ -55,7 +55,7 @@ angular.module("project-app").controller("landingCtrl", ["$scope", "$http", "sha
         sessionStorage.loggedIn = serverResponse.data.loggedIn;
 
         sharedFunctions.Prompt("success", "Login successful!");
-        window.location.href = '#!pastebin';
+        window.location.href = '#!';
 
       } else {
         sharedFunctions.Prompt("warning", "Unexpected response.");

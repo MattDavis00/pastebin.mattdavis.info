@@ -7,8 +7,8 @@ app.config(function($routeProvider) {
 
     // Routes 
     .when("/", {
-      templateUrl: "project/components/landing/landingView.html",
-      controller: "landingCtrl"
+      templateUrl: "project/components/pastebin/share/pastebinView.html",
+      controller: "pastebinCtrl"
     })
     .when("/settings", {
       templateUrl: "project/components/settings/settingsView.html",
@@ -21,10 +21,6 @@ app.config(function($routeProvider) {
     .when("/broken-link", {
       templateUrl: "project/components/broken-link/brokenLinkView.html",
       controller: "brokenLinkCtrl"
-    })
-    .when("/pastebin", {
-      templateUrl: "project/components/pastebin/share/pastebinView.html",
-      controller: "pastebinCtrl"
     })
     .when('/p/:sharingURI*', {
       templateUrl: "project/components/pastebin/view/viewPasteView.html",

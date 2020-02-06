@@ -101,7 +101,7 @@ angular.module("project-app").controller("viewPasteCtrl", ["$scope", "$http", "s
   $scope.NewPaste = function() {
     sharedFunctions.updateSession();
     if (sessionStorage.loggedIn === "true") {
-      window.location.href = '#!pastebin';
+      window.location.href = '#!';
     } else {
       sharedFunctions.SSORedirect();
       sharedFunctions.Prompt("error", "You are not logged in. Please log in to create a new paste. ");

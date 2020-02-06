@@ -1,5 +1,7 @@
 <?php
 
+die();
+
 // Database Connection & Post data
 include($_SERVER["DOCUMENT_ROOT"]."/project/shared/connection.php");
 
