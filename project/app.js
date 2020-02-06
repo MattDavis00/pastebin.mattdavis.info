@@ -118,7 +118,7 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
         sessionStorage.loggedIn = serverResponse.data.loggedIn;
 
         self.Prompt("success", "Log out successful!");
-        window.location.href = 'https://auth.mattdavis.info/api/logout';
+        window.location.href = 'https://auth.mattdavis.info/api/logout?redirect=true';
 
       } else { // Logout failed
         self.Prompt("warning", "Log out unsuccessful!");
