@@ -35,7 +35,7 @@ try
 
   if (count($result) === 1)
   {
-    if (($result[0]["User_ID"] === $_SESSION["userID"] && $_SESSION["loggedIn"] === true) || $result[0]["Public"] === true) {
+    if (($result[0]["User_ID"] === $_SESSION["userID"] && $_SESSION["loggedIn"] === true) || $result[0]["Public"] === 1) {
       $outputData->data->code = $result[0]["Code"];
       $outputData->fetchSuccess = true;
     } else {
