@@ -82,10 +82,11 @@ if (!$outputData->errorFlag)
         $i = 5;
 
       }
-      catch(PDOException $e)
+      catch(Exception $e)
       {
         $outputData->executionErrorFlag = true;
-        $outputData->executionError = "Share failed. Please try again. ";
+        // $outputData->executionError = "Share failed. Please try again. ";
+        $outputData->executionError = $e->getMessage();
       }
     }
     else if ($i === 4)
