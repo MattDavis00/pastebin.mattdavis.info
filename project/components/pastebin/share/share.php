@@ -70,7 +70,8 @@ if (!$outputData->errorFlag)
         $insertPaste->bindParam(':charID', $charID);
         $insertPaste->bindParam(':code', $clientCode->data);
         $insertPaste->bindParam(':userID', $_SESSION["userID"]);
-        $public = $request->public->data ? true : false;
+        $public = $request->public->data ? 1 : 0;
+        $outputData->public = $public;
         $insertPaste->bindParam(':public', $public);
         $insertPaste->bindParam(':creationTime', $serverDateTime);
 
