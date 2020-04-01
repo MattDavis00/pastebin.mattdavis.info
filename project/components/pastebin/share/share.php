@@ -70,6 +70,7 @@ if (!$outputData->errorFlag)
         $insertPaste->bindParam(':charID', $charID);
         $insertPaste->bindParam(':code', $clientCode->data);
         $insertPaste->bindParam(':userID', $_SESSION["userID"]);
+        echo '$request->public->data: ' . $request->public->data;
         $insertPaste->bindParam(':public', $request->public->data ? true : false);
         $insertPaste->bindParam(':creationTime', $serverDateTime);
 
@@ -106,7 +107,6 @@ if (!$outputData->errorFlag)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-echo "Got here 7";
 // Output
 echo json_encode($outputData);
 
