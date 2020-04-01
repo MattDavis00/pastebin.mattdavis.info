@@ -1,5 +1,7 @@
 <?php
 
+echo "Got to connection stage";
+
 // Create session
 session_save_path($_SERVER["DOCUMENT_ROOT"]."/../sessions");
 session_start();
@@ -41,3 +43,5 @@ $outputData->executionError = "";
 // Datetime
 date_default_timezone_set('Europe/London');
 $serverDateTime = date("Y-m-d H:i:s");
+
+echo "Finished connection stage";
