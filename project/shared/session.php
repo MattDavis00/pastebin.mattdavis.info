@@ -21,9 +21,6 @@ $outputData->loginAlertMessage = "";
 
 $outputData->data->loggedIn = $_SESSION["loggedIn"];
 $outputData->data->userID = $_SESSION["userID"];
-$outputData->data->email = $_SESSION["email"];
-$outputData->data->firstName = $_SESSION["firstName"];
-$outputData->data->lastName = $_SESSION["lastName"];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

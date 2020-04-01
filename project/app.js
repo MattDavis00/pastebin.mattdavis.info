@@ -156,9 +156,6 @@ app.service('sharedFunctions', ['$http', "$location", function($http, $location)
 
       // Set Local Session Variables //
       sessionStorage.userID = serverResponse.data.userID;
-      sessionStorage.email = serverResponse.data.email;
-      sessionStorage.firstName = serverResponse.data.firstName;
-      sessionStorage.lastName = serverResponse.data.lastName;
       sessionStorage.loggedIn = serverResponse.data.loggedIn;
 
     });

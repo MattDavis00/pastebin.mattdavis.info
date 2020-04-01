@@ -18,10 +18,6 @@ try
 
   $outputData->data->loggedIn = $_SESSION["loggedIn"] = false;
   $outputData->data->userID = $_SESSION["userID"] = null;
-  $outputData->data->email = $_SESSION["email"] = null;
-  $outputData->data->firstName = $_SESSION["firstName"] = null;
-  $outputData->data->lastName = $_SESSION["lastName"] = null;
-  $_SESSION["passwordHash"] = null;
 
   $outputData->logOutSuccess = true;
 
