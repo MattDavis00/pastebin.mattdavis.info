@@ -70,7 +70,10 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
           sharedFunctions.Prompt("error", serverResponse.executionError);
         } else if (serverResponse.shareSuccess) {
           sharedFunctions.Prompt("success", "Share successful! mattdavis.info/#!/p/" + serverResponse.shareCharID);
-          window.location.href = '#!/p/' + serverResponse.shareCharID;
+          $('#publicPrivateModal').modal('hide');
+          $('#publicPrivateModal').on('hidden.bs.modal', function(e) {
+            window.location.href = '#!/p/' + serverResponse.shareCharID;
+          })
         } else {
           sharedFunctions.Prompt("warning", "Unexpected response.");
         }
