@@ -71,7 +71,6 @@ if (!$outputData->errorFlag)
         $insertPaste->bindParam(':code', $clientCode->data);
         $insertPaste->bindParam(':userID', $_SESSION["userID"]);
         $public = $request->public->data ? 1 : 0;
-        $outputData->public = $public;
         $insertPaste->bindParam(':public', $public);
         $insertPaste->bindParam(':creationTime', $serverDateTime);
 
@@ -86,8 +85,7 @@ if (!$outputData->errorFlag)
       catch(Exception $e)
       {
         $outputData->executionErrorFlag = true;
-        // $outputData->executionError = "Share failed. Please try again. ";
-        $outputData->executionError = $e->getMessage();
+        $outputData->executionError = "Share failed. Please try again. ";
       }
     }
     else if ($i === 4)
