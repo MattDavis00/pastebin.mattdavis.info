@@ -6,9 +6,6 @@ include($_SERVER["DOCUMENT_ROOT"]."/project/shared/connection.php");
 // Include Validation Functions
 include($_SERVER["DOCUMENT_ROOT"]."/project/shared/validations.php");
 
-// Ensure That The User Is Logged In
-include($_SERVER["DOCUMENT_ROOT"]."/project/shared/authenticate.php");
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Input Variables
@@ -25,7 +22,7 @@ try
 {
 
   // SQL Query
-  $selectPaste = $conn->prepare("SELECT `Code` FROM `paste` WHERE `Char_ID` = :charID");
+  $selectPaste = $conn->prepare("SELECT `Code`, `User_ID`, `Public` FROM `paste` WHERE `Char_ID` = :charID");
   $selectPaste->bindParam(':charID', $clientCharID);
 
   // Execute Query
@@ -38,8 +35,13 @@ try
 
   if (count($result) === 1)
   {
-    $outputData->data->code = $result[0]["Code"];
-    $outputData->fetchSuccess = true;
+    if (($result[0]["User_ID"] === $_SESSION["userID"] && $_SESSION["loggedIn"] === true) || $result[0]["Public"] === true) {
+      $outputData->data->code = $result[0]["Code"];
+      $outputData->fetchSuccess = true;
+    } else {
+      $outputData->executionErrorFlag = true;
+      $outputData->executionError = "Paste is private! ";
+    }
   }
   else {
     $outputData->executionErrorFlag = true;

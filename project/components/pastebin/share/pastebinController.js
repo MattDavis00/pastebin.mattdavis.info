@@ -24,6 +24,11 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
     sharedFunctions.Validation.RemoveErrorTooltip('#register-passwordRepeat');
   })
 
+  $scope.PublicPrivate = function() {
+    this.ChangeSlider();
+    $('#publicPrivateModal').modal('show');
+  }
+
   $scope.SharePaste = function() {
 
     var errorWithInput = false;
@@ -44,6 +49,10 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
           code: {
             data: $scope.pastebinData.code,
             field: "#pastebin-code"
+          },
+          public: {
+            data: $scope.pastebinData.public,
+            field: "#theme"
           }
         },
         headers: {
@@ -138,6 +147,14 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
     $('#pasteHistoryModal').on('hidden.bs.modal', function(e) {
       window.location.href = '#!/p/' + charID;
     })
+  }
+
+  $scope.ChangeSlider = function() {
+    if ($scope.pastebinData.public) {
+      document.body.setAttribute('data-theme', 'public');
+    } else {
+      document.body.setAttribute('data-theme', 'private');
+    }
   }
 
 }]);

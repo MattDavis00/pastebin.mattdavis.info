@@ -65,11 +65,12 @@ if (!$outputData->errorFlag)
       {
 
         // SQL Query
-        $insertPaste = $conn->prepare("INSERT INTO `paste` (`Char_ID`, `Code`, `User_ID`, `Creation_Time`)
-        VALUES (:charID, :code, :userID, :creationTime)");
+        $insertPaste = $conn->prepare("INSERT INTO `paste` (`Char_ID`, `Code`, `User_ID`, `Public`, `Creation_Time`)
+        VALUES (:charID, :code, :userID, :public, :creationTime)");
         $insertPaste->bindParam(':charID', $charID);
         $insertPaste->bindParam(':code', $clientCode->data);
         $insertPaste->bindParam(':userID', $_SESSION["userID"]);
+        $insertPaste->bindParam(':public', $request->public->data ? true : false);
         $insertPaste->bindParam(':creationTime', $serverDateTime);
 
         // Execute Query

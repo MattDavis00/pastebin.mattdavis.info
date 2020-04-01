@@ -2,7 +2,7 @@
 
 <div class="alert text-center" role="alert" id="alert-pastebin-menu">
   <a class="white-link" href="" ng-click="NewPaste()"><i class="material-icons-sharp">note_add</i></a><br />
-  <a class="white-link" href="" ng-click="SharePaste()"><i class="material-icons-sharp">save</i></a><br />
+  <a class="white-link" href="" ng-click="PublicPrivate()"><i class="material-icons-sharp">save</i></a><br />
   <a class="white-link" href="" ng-click="ShowPasteHistory()"><i class="material-icons-sharp">history</i></a>
 </div>
 
@@ -37,6 +37,33 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="publicPrivateModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Would you like your paste to be private or public?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+        <div class="flexbox-row">
+          <div>Private</div>
+          <!-- Rounded switch -->
+          <label class="switch no-select">
+            <input id="theme" name="theme" ng-click="ChangeSlider()" ng-model="pastebinData.public" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+          <div>Public</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="SharePaste()" class="btn btn-success" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
