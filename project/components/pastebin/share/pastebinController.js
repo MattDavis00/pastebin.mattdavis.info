@@ -4,6 +4,8 @@ angular.module("project-app").controller("pastebinCtrl", ["$scope", "$http", "sh
   $scope.pastebinData = {};
   $scope.results = "";
 
+  $scope.pastebinData.public = false;
+
   $scope.Modal.SwitchLoginRegister = function() {
     $('#loginModal').modal('toggle');
     $('#registerModal').modal('toggle');

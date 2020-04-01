@@ -70,8 +70,8 @@ if (!$outputData->errorFlag)
         $insertPaste->bindParam(':charID', $charID);
         $insertPaste->bindParam(':code', $clientCode->data);
         $insertPaste->bindParam(':userID', $_SESSION["userID"]);
-        echo '$request->public->data: ' . $request->public->data;
-        $insertPaste->bindParam(':public', $request->public->data ? true : false);
+        $public = $request->public->data ? true : false;
+        $insertPaste->bindParam(':public', $public);
         $insertPaste->bindParam(':creationTime', $serverDateTime);
 
         // Execute Query
@@ -82,11 +82,10 @@ if (!$outputData->errorFlag)
         $i = 5;
 
       }
-      catch(Exception $e)
+      catch(PDOException $e)
       {
         $outputData->executionErrorFlag = true;
         $outputData->executionError = "Share failed. Please try again. ";
-        echo "This was the exception: " . $e;
       }
     }
     else if ($i === 4)
