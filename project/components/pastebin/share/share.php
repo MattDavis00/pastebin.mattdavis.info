@@ -23,8 +23,6 @@ $outputData->loginSuccess = false;
 
 ///// Validations /////
 
-echo "Got here 1";
-
 // Code
 $codeValidation = $validate->Empty($clientCode->data); // Run validation
 if ($codeValidation->errorFlag) // If there was en error with the email.
@@ -38,14 +36,10 @@ if ($codeValidation->errorFlag) // If there was en error with the email.
   $outputData->errorReport[] = $errorEntry;
 }
 
-echo "Got here 2";
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if (!$outputData->errorFlag)
 {
-
-  echo "Got here 3";
 
   for ($i = 0; $i < 5; $i++)
   {
@@ -64,11 +58,9 @@ if (!$outputData->errorFlag)
 
     // Close Statement
     $selectPaste = null;
-    echo "Got here 4";
 
     if (count($result) === 0)
     {
-      echo "Got here 5";
       try
       {
 
@@ -87,13 +79,13 @@ if (!$outputData->errorFlag)
         $outputData->shareSuccess = true;
         $outputData->shareCharID = $charID;
         $i = 5;
-        echo "Got here 6";
 
       }
       catch(PDOException $e)
       {
         $outputData->executionErrorFlag = true;
         $outputData->executionError = "Share failed. Please try again. ";
+        echo "This was the exception: " . $e;
       }
     }
     else if ($i === 4)
